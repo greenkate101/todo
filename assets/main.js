@@ -34,9 +34,9 @@ input.addEventListener('keypress', function (event) {
         li.appendChild(remove);
 
         // reset text input to empty
-        input.value = ''
+        input.value = '';
     }
-})
+});
 
 // click to complete functionality
 toDo.addEventListener('click', function (e) {
@@ -44,14 +44,14 @@ toDo.addEventListener('click', function (e) {
 
         // move to filterComplete
         if (e.target.classList.contains('complete')) {
-            filterComplete.forEach(function(value) {
+            filterComplete.forEach(function (value) {
                 if (value.id === e.target.id) {
                     filterIncomplete.push(value);
                     filterComplete.splice(filterComplete.indexOf(value), 1);
                 }
             });
         } else {
-            filterIncomplete.forEach(function(value) {
+            filterIncomplete.forEach(function (value) {
                 if (value.id === e.target.id) {
                     filterComplete.push(value);
                     filterIncomplete.splice(filterIncomplete.indexOf(value), 1);
