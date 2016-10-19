@@ -70,6 +70,7 @@ toDo.addEventListener('click', function (e) {
         let id = e.target.parentElement.id,
             goAway = document.querySelector('#' + id);
         document.querySelector('#' + id).parentElement.removeChild(goAway);
+
         // delete from array
         if (e.target.classList.contains('complete')) {
             let index = filterComplete.findIndex((value) => value.id === id)
@@ -80,7 +81,6 @@ toDo.addEventListener('click', function (e) {
         }
     }
 });
-
 
 document.querySelector('.all').addEventListener('click', function () {
     for (var i = 0; i < filterIncomplete.length; i++) {
