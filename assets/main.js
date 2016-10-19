@@ -11,7 +11,6 @@ var li = document.createElement('li'),
     // object constructor to match <li> ToDo items
 function ToDoItem(content, id) {
     this.content = content;
-    this.status = 'incomplete';
     this.id = id;
 }
 
@@ -42,15 +41,26 @@ input.addEventListener('keypress', function (event) {
 // click to complete functionality
 toDo.addEventListener('click', function (e) {
     if (e.target.matches('.todo-item')) {
-        e.target.classList.toggle('complete');
+
         // move to filterComplete
-        filterIncomplete.forEach(function(value) {
-            if (value.id === e.target.id) {
-                let index = filterIncomplete.indexOf(value);
-                filterComplete.push(value);
-                filterIncomplete.splice(index, 1);
-            }
-        });
+        if (e.target.classList.contains('complete')) {
+            filterComplete.forEach(function(value) {
+                if (value.id === e.target.id) {
+                    filterIncomplete.push(value);
+                    filterComplete.splice(filterComplete.indexOf(value), 1);
+                }
+            });
+        } else {
+            filterIncomplete.forEach(function(value) {
+                if (value.id === e.target.id) {
+                    filterComplete.push(value);
+                    filterIncomplete.splice(filterIncomplete.indexOf(value), 1);
+                }
+            });
+        }
+
+        // add complete class
+        e.target.classList.toggle('complete');
     }
 });
 
@@ -75,5 +85,11 @@ toDo.addEventListener('click', function (e) {
 document.querySelector('.all').addEventListener('click', function () {
     for (var i = 0; i < filterIncomplete.length; i++) {
     console.log(filterIncomplete[i]);
+    }
+});
+
+document.querySelector('.complete').addEventListener('click', function () {
+    for (var i = 0; i < filterComplete.length; i++) {
+    console.log(filterComplete[i]);
     }
 });
