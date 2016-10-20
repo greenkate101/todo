@@ -4,14 +4,13 @@ var li = document.createElement('li'),
     input = document.querySelector('input'),
     id = 0,
     // containers for ToDo items
-    filterComplete = [],
-    filterIncomplete = [],
-    filterAll = [filterComplete, filterIncomplete];
+    toDoList = [];
 
     // object constructor to match <li> ToDo items
 function ToDoItem(content, id) {
     this.content = content;
     this.id = id;
+    this.complete = false;
 }
 
 input.addEventListener('keypress', function (event) {
@@ -26,7 +25,7 @@ input.addEventListener('keypress', function (event) {
         toDo.appendChild(li);
 
         // create new ToDo item object and store in Incomplete array
-        filterIncomplete.push(new ToDoItem(input.value, li.id));
+        toDoList.push(new ToDoItem(input.value, li.id));
 
         // create and add remove/delete button
         remove.textContent = 'X';
@@ -42,22 +41,12 @@ input.addEventListener('keypress', function (event) {
 toDo.addEventListener('click', function (e) {
     if (e.target.matches('.todo-item')) {
 
-        // move to filterComplete
-        if (e.target.classList.contains('complete')) {
-            filterComplete.forEach(function (value) {
-                if (value.id === e.target.id) {
-                    filterIncomplete.push(value);
-                    filterComplete.splice(filterComplete.indexOf(value), 1);
-                }
-            });
-        } else {
-            filterIncomplete.forEach(function (value) {
-                if (value.id === e.target.id) {
-                    filterComplete.push(value);
-                    filterIncomplete.splice(filterIncomplete.indexOf(value), 1);
-                }
-            });
-        }
+        // toggle complete property
+        toDoList.forEach(function (value) {
+            if (value.id === e.target.id) {
+                value.complete = !value.complete
+            }
+        });
 
         // add complete class
         e.target.classList.toggle('complete');
@@ -67,29 +56,20 @@ toDo.addEventListener('click', function (e) {
 // delete button functionality
 toDo.addEventListener('click', function (e) {
     if (e.target.matches('.remove')) {
+
+        // remove from HTML structure
         let id = e.target.parentElement.id,
             goAway = document.querySelector('#' + id);
         document.querySelector('#' + id).parentElement.removeChild(goAway);
 
-        // delete from array
-        if (e.target.classList.contains('complete')) {
-            let index = filterComplete.findIndex((value) => value.id === id)
-            filterComplete.splice(index, 1);
-        } else {
-            let index = filterIncomplete.findIndex((value) => value.id === id)
-            filterIncomplete.splice(index, 1);
-        }
+        // remove from array
+        let index = toDoList.findIndex((value) => value.id === id)
+        toDoList.splice(index, 1);
     }
 });
 
 document.querySelector('.all').addEventListener('click', function () {
-    for (var i = 0; i < filterIncomplete.length; i++) {
-    console.log(filterIncomplete[i]);
-    }
-});
-
-document.querySelector('.complete').addEventListener('click', function () {
-    for (var i = 0; i < filterComplete.length; i++) {
-    console.log(filterComplete[i]);
+    for (var i = 0; i < toDoList.length; i++) {
+    console.log(toDoList[i]);
     }
 });
