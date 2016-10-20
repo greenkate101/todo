@@ -61,12 +61,12 @@ toDo.addEventListener('click', function (e) {
     if (e.target.matches('.remove')) {
 
         // remove from HTML structure
-//        let id = e.target.parentElement.id,
+        let id = e.target.parentElement.id,
             goAway = document.querySelector('#' + id);
         document.querySelector('#' + id).parentElement.removeChild(goAway);
 
         // remove from array
-//        let index = toDoList.findIndex((value) => value.id === id)
+        let index = toDoList.findIndex((value) => value.id === id)
         toDoList.splice(index, 1);
     }
 });
@@ -121,6 +121,7 @@ filterC.addEventListener('click', function () {
 // event listener for filter/show only Incomplete
 filterIC.addEventListener('click', function () {
 
+    // now manipulates the array instead of the css
     toDoList.forEach(function (value) {
         let item = toDo.querySelector('#' + value.id);
 
@@ -133,10 +134,3 @@ filterIC.addEventListener('click', function () {
         }
     });
 });
-
-// test button to log the array
-//document.querySelector('.filterall').addEventListener('click', function () {
-//    for (var i = 0; i < toDoList.length; i++) {
-//    console.log(toDoList[i]);
-//    }
-//});
