@@ -72,7 +72,6 @@ toDo.addEventListener('click', function (e) {
     }
 });
 
-// NOT WORKING
 // event listener for filter/show All
 filterA.addEventListener('click', function () {
     toDoList.forEach(function (value) {
@@ -89,7 +88,6 @@ filterC.addEventListener('click', function () {
     });
 });
 
-// NOT WORKING
 // event listener for filter/show only Incomplete
 filterIC.addEventListener('click', function () {
     toDoList.forEach(function (value) {
