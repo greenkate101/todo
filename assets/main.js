@@ -1,12 +1,16 @@
 var li = document.createElement('li'),
     remove = document.createElement('button'),
     toDo = document.querySelector('.todo'),
+    listItem = toDo.querySelector('.todo-item'),
     input = document.querySelector('input'),
+    filterA = document.querySelector('.filter-all'),
+    filterC = document.querySelector('.filter-complete'),
+    filterIC = document.querySelector('.filter-incomplete'),
     id = 0,
     // containers for ToDo items
     toDoList = [];
 
-    // object constructor to match <li> ToDo items
+// object constructor to match <li> ToDo items
 function ToDoItem(content, id) {
     this.content = content;
     this.id = id;
@@ -44,7 +48,7 @@ toDo.addEventListener('click', function (e) {
         // toggle complete property
         toDoList.forEach(function (value) {
             if (value.id === e.target.id) {
-                value.complete = !value.complete
+                value.complete = !value.complete;
             }
         });
 
@@ -68,8 +72,35 @@ toDo.addEventListener('click', function (e) {
     }
 });
 
-document.querySelector('.all').addEventListener('click', function () {
-    for (var i = 0; i < toDoList.length; i++) {
-    console.log(toDoList[i]);
-    }
+// NOT WORKING
+// event listener for filter/show All
+filterA.addEventListener('click', function () {
+    toDoList.forEach(function (value) {
+        var item = toDo.querySelector('#' + value.id).classList;
+        item.remove('hidden');
+    });
 });
+
+// event listener for filter/show only Complete
+filterC.addEventListener('click', function () {
+    toDoList.forEach(function (value) {
+        var item = toDo.querySelector('#' + value.id).classList;
+        value.complete ? item.remove('hidden') : item.add('hidden');
+    });
+});
+
+// NOT WORKING
+// event listener for filter/show only Incomplete
+filterIC.addEventListener('click', function () {
+    toDoList.forEach(function (value) {
+        var item = toDo.querySelector('#' + value.id).classList;
+        value.complete ? item.add('hidden') : item.remove('hidden');
+    });
+});
+
+// test button to log the array
+//document.querySelector('.filterall').addEventListener('click', function () {
+//    for (var i = 0; i < toDoList.length; i++) {
+//    console.log(toDoList[i]);
+//    }
+//});
