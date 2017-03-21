@@ -5,8 +5,14 @@ var toDo = document.querySelector('.todo'),
     filterC = document.querySelector('.filter-complete'),
     filterIC = document.querySelector('.filter-incomplete'),
     id = 0,
-    // containers for ToDo items
+    numberOfTasks = 0,
+    completeTasks = 0,
+    // container for ToDo items
     toDoList = [];
+
+// date
+var d = new Date();
+document.getElementById("time").innerHTML = d.toDateString();
 
 // object constructor to match <li> ToDo items
 function ToDoItem(content, id) {
@@ -14,6 +20,23 @@ function ToDoItem(content, id) {
     this.id = id;
     this.complete = false;
     this.hidden = false;
+}
+
+function updateCount (up, task) {
+    if (task === 'incomplete') {
+        if (up === 'up') {
+            numberOfTasks++;
+        } else {
+            numberOfTasks--;
+        }
+    } else {
+        if (up === 'up') {
+            completeTasks++;
+        } else {
+            completeTasks--;
+        }
+    }
+    document.querySelector('#tasks').textContent = 'Incomplete task(s): ' + numberOfTasks + ' Complete task(s): ' + completeTasks;
 }
 
 input.addEventListener('keypress', function (event) {
@@ -37,6 +60,9 @@ input.addEventListener('keypress', function (event) {
 
         // reset text input to empty
         input.value = '';
+
+        // increment total number of incomplete tasks
+        updateCount('up', 'incomplete');
     }
 });
 
@@ -51,6 +77,14 @@ toDo.addEventListener('click', function (e) {
             }
         });
 
+        // update number of complete and incomplete tasks
+        if (!e.target.classList.contains('complete')) {
+            updateCount('down', 'incomplete');
+            updateCount('up', 'complete');
+        } else if (e.target.classList.contains('complete')) {
+            updateCount('up', 'incomplete');
+            updateCount('down', 'complete');
+        }
         // add complete class
         e.target.classList.toggle('complete');
     }
@@ -68,6 +102,13 @@ toDo.addEventListener('click', function (e) {
         // remove from array
         let index = toDoList.findIndex((value) => value.id === id)
         toDoList.splice(index, 1);
+
+        // update total number of complete and incomplete tasks
+        if (!goAway.classList.contains('complete')) {
+            updateCount('down', 'incomplete');
+        } else if (goAway.classList.contains('complete')) {
+            updateCount('down', 'complete');
+        }
     }
 });
 
@@ -76,11 +117,14 @@ function repopulate(value) {
     var li = document.createElement('li'),
         remove = document.createElement('button');
 
-    //recreate list item
+    // recreate list item
     li.textContent = value.content;
     li.classList.add('todo-item');
     li.id = value.id;
     toDo.appendChild(li);
+    if (value.complete) {
+        li.classList.add('complete');
+    }
 
     // create 'remove' button
     remove.textContent = 'X';
@@ -115,7 +159,6 @@ filterC.addEventListener('click', function () {
             value.hidden = true;
         }
     });
-
 });
 
 // event listener for filter/show only Incomplete

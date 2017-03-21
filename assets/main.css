@@ -1,13 +1,156 @@
 *, *:after, *:before {
 	box-sizing: border-box
 }
+/*@font-face {
+	font-family: 'Josefin Sans', sans-serif;
+	src: url(Josefin Sans/);
+}*/
+body {
+	margin: 0;
+	padding: 0;
+	/*background-image: linear-gradient(#1C2222,#1E1E1E);*/
+	background-color: #1C2222;
+}
+header {
+	background-color: #FFFFFF;
+	/*background-image: linear-gradient(#1C2222,#1E1E1E);*/
+	overflow: auto;
+}
+h2 {
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 50px;
+	color: #A9A9A9;
+	padding-left: 10px;
+	text-align: left;
+}
+#time {
+	font-family: 'Josefin Sans', sans-serif;
+	color: #B6BBBF;
+	padding-left: 10px;
+}
+section {
+	background-position: center;
+	text-align: center;
+}
 
+input {
+	padding: 30px 55px;
+	border: #555B5B;
+	font-size: 30px;
+	font-family: 'Josefin Sans', sans-serif;
+	border: 2px solid #555B5B;
+	text-align: center;
+	margin-top: 2%;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+button {
+	display: inline-block;
+	border: none;
+	box-shadow: none;
+	background-color: #FFFFFF;
+    font-size: 13px;
+}
+.remove {
+    font-size: 22px;
+    color: grey;
+    float: right;
+}
+.contain {
+	/*display: inline-block;*/
+	/*vertical-align: top;*/
+	width: 100%;
+	padding: 5px;
+	/*margin-right: 7%;*/ 
+	text-align: center;
+	margin: auto 0;
+	background-position: center;
+	overflow: auto;
+ }
+#one,
+#two,
+#three {
+	/*font-family: 'Dosis', sans-serif;*/
+	font-family: 'Josefin Sans', sans-serif;
+	width: 70px;
+	height: 25px;
+	float: center;
+	text-align: center;
+	outline: none;
+	border: none;
+	background-color: #B6BBBF;
+	margin-top: 20px;
+	border-radius: 12px;
+	color: #E8E7E5; 
+}
+#two,
+#three {
+	/*margin-top: 10px;*/
+}
+#tasks {
+	font-family: 'Josefin Sans', sans-serif;
+	width: 90px;
+	height: 80px;
+	opacity: 0.6;
+	margin-top: 30%;
+	padding-left: 10px;
+	color: #E8E7E5;
+}
+.todo {
+	text-align: center;
+	background-color: #FFFFFF;
+	margin: 0 auto;
+	width: 95%;
+}
+li {
+	color: #686868;
+	border: none;
+	outline: none;
+	text-align: center;
+    list-style-type: none;
+    font-size: 32px;
+    margin-bottom: 10px;
+    margin-right: 80px;
+    font-family: 'Dosis', sans-serif;
+}
+li.complete {
+    color: rgba(200,200,200, .5);
+}
 .clearfix:after {
     content: "";
     display: block;
     clear: both;
 }
-
 .hidden {
     display: none;
+}
+
+/*Media Queries*/
+
+@media (min-width: 600px) {
+	#one,
+	#two,
+	#three {
+		display: inline-block;
+	}
+	.todo {
+		text-align: center;
+		width: 65%;
+    	padding: 0;
+	}
+}
+
+@media (min-width: 1000px) {
+	input {
+	padding: 30px 190px;
+	}
+	.todo {
+		text-align: center;
+		width: 45%;
+	}
 }
