@@ -4,7 +4,7 @@
         <title>
             
         </title>
-        <link rel="stylesheet" href="assets/main.css">
+        <link rel="stylesheet" href="Public/main.css">
         <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     </head>
@@ -26,6 +26,6 @@
             <ul class="todo">
             </ul>    
         </section>
-        <script type="text/javascript" src="assets/main.js"></script>
+        <script type="text/javascript" src="main.js"></script>
     </body>
 </html>
