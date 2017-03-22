@@ -4,7 +4,7 @@
         <title>
             
         </title>
-        <link rel="stylesheet" href="Public/main.css">
+        <link rel="stylesheet" href="main.css">
         <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     </head>
